@@ -1,4 +1,4 @@
-/*
+l/*
  * card-piv.c: Support for PIV-II from NIST SP800-73
  * card-default.c: Support for cards with no driver
  *
@@ -2334,7 +2334,7 @@ static int piv_validate_general_authentication(sc_card_t *card,
 
 	u8 sbuf[4096]; /* needs work. for 3072 keys, needs 384+10 or so */
 	u8 *rbuf = NULL;
-	size_t rbuflen;
+	size_t rbuflen = NULL;
 
 	SC_FUNC_CALLED(card->ctx, SC_LOG_DEBUG_VERBOSE);
 
@@ -3390,7 +3390,7 @@ piv_check_protected_objects(sc_card_t *card)
 		priv->pin_cmd_noparse = 1; /* tell piv_general_io dont need to parse at all. */
 		rbuf = buf;
 		r = piv_get_data(card, priv->object_test_verify, &rbuf, &buf_len);
-		priv->pin_cmd_noparse = 0;
+		priv->pin_cmd_noparse = 0;rbuflen
 	}
 	if (r == SC_ERROR_FILE_NOT_FOUND)
 		r = SC_ERROR_PIN_CODE_INCORRECT;
